@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 {/*Component's name always start with capital letter,
 	Because they are structor, they are not a render DOM element yet.
 	They have the capacity to render*/}
@@ -35,6 +36,7 @@ export default class Layout extends React.Component {
 				<p> name from constructor: {this.name}</p>
 				<Header />
 				{listHeader}
+				<Footer />
 			</div>
 				
 		);
