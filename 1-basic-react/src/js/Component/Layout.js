@@ -7,9 +7,13 @@ import Footer from "./Footer";
 {/* Only return one element at the time */}
 export default class Layout extends React.Component {
 	constructor(){
-	{/*Super() is need everytime for the first line inside constructor*/}
+		{/*Super() is need everytime for the first line inside constructor*/}
 		super();
 		this.name = "Shan"
+		{/*this.state default is null
+			Always set State in the constructor()*/}
+		this.state = {name: "Will"};
+
 	}
 	getVale(){
 		return 9;
@@ -37,6 +41,7 @@ export default class Layout extends React.Component {
 				<Header />
 				{listHeader}
 				<Footer />
+				{this.state.name}
 			</div>
 				
 		);
