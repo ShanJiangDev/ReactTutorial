@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "./Header";
-{/*Component's name always start with capital letter*/}
+{/*Component's name always start with capital letter,
+	Because they are structor, they are not a render DOM element yet.
+	They have the capacity to render*/}
 {/* Only return one element at the time */}
 export default class Layout extends React.Component {
 	constructor(){
@@ -16,6 +18,11 @@ export default class Layout extends React.Component {
 	}
 	render(){
 		{/*Componet can add directly inside render, anywhere HTML is*/}
+		var listHeader = [
+			<Header />,
+			<Header />,
+			<Header />,
+		];
 		const name = "will";
 		return(
 			<div>
@@ -27,6 +34,7 @@ export default class Layout extends React.Component {
 				<p> double amount of 2: {this.getSecondVal(2)} </p>
 				<p> name from constructor: {this.name}</p>
 				<Header />
+				{listHeader}
 			</div>
 				
 		);
