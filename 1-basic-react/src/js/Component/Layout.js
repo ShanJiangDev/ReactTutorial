@@ -11,9 +11,23 @@ export default class Layout extends React.Component {
 		super();
 		this.name = "Shan"
 		{/*this.state default is null
-			Always set State in the constructor()*/}
+			1. Always set State in the constructor()
+			2. Whenever state changes on a component, the component iwll automatically re-render
+			and update the Dom if there are any changes.
+			2.1 If there is no changes, Dom wont get touched at all
+			2.2 How this works:
+				Whenever react renders out all the comonents (the component tree), it renders
+				the layout the header the footer everything then it looks for changes from the 
+				Virtual Dom to the actual Dom. If there are changes it will update only the 
+				affected nodes in the most efficient way. If there is no changes at all it doesnt
+				even touch the webpage
+			3. Virtual Dom: Everything is updated behind the scenes and Only change in the real 
+				dumb if there is differences --> Allows this applications to become extremelly fast
+			4. State only get used if a component has an internal value that only affect that component
+				and doesnt really affect any of the rest of the app if thereäs something that affects layout 
+				and affects absolutely nothing else state maybe appropriate
+			*/}
 		this.state = {name: "Will"};
-
 	}
 	getVale(){
 		return 9;
@@ -21,7 +35,14 @@ export default class Layout extends React.Component {
 	getSecondVal(val){
 		return val*val;
 	}
+
+
 	render(){
+		setTimeout(function() { 
+			{/*Change state after one second*/}
+			this.setState({name: "Bob"}); 
+		}.bind(this), 3000);
+
 		{/*Componet can add directly inside render, anywhere HTML is*/}
 		var listHeader = [
 			<Header />,
@@ -42,6 +63,7 @@ export default class Layout extends React.Component {
 				{listHeader}
 				<Footer />
 				{this.state.name}
+				
 			</div>
 				
 		);
