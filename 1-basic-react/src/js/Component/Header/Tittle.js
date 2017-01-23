@@ -3,8 +3,9 @@ import React from "react";
 {/* Only return one element at the time */}
 export default class Tittle extends React.Component {
 	render(){
+		console.log(this.props.title);
 		return(
-			<h1> Welcome Header Tittle </h1>
+			<h1>{this.props.title}</h1>
 		);
 	}
 }

@@ -5,10 +5,10 @@ import Tittle from "./Header/Tittle";
 export default class Header extends React.Component {
 	render(){
 		const name = "will";
+		console.log(this.props);
 		return(
 			<div>
-				<header>header</header>
-				<Tittle />
+				<Tittle title={this.props.title} />
 			</div>
 		);
 	}

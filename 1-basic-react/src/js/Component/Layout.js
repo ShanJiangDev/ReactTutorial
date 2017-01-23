@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
 		this.name = "Shan"
 		{/*this.state default is null
 			1. Always set State in the constructor()
-			2. Whenever state changes on a component, the component iwll automatically re-render
+			2. Whenever state changes on a component, the component will automatically re-render
 			and update the Dom if there are any changes.
 			2.1 If there is no changes, Dom wont get touched at all
 			2.2 How this works:
@@ -24,48 +24,57 @@ export default class Layout extends React.Component {
 			3. Virtual Dom: Everything is updated behind the scenes and Only change in the real 
 				dumb if there is differences --> Allows this applications to become extremelly fast
 			4. State only get used if a component has an internal value that only affect that component
-				and doesnt really affect any of the rest of the app if thereäs something that affects layout 
-				and affects absolutely nothing else state maybe appropriate
-			*/}
-		this.state = {name: "Will"};
+				and doesnt really affect any of the rest of the app. If there's something that affects layout 
+				and affects absolutely nothing else, state maybe appropriate
+			5. Props: Are injected into every other component 
+			5.1: To create a multiple & different version of same component.
+					By sending different properties to the same component.
+		*/}
+		this.state = {
+			name: "Will",
+			title: "State title"
+		};
 	}
 	getVale(){
 		return 9;
 	}
+
 	getSecondVal(val){
 		return val*val;
 	}
 
-
 	render(){
-		setTimeout(function() { 
-			{/*Change state after one second*/}
-			this.setState({name: "Bob"}); 
+
+		{/*Change state after one second*/}
+		setTimeout(function() {
+			this.setState({name: "Bob"})
+			this.setState({title: "Updated State title"})
 		}.bind(this), 3000);
 
 		{/*Componet can add directly inside render, anywhere HTML is*/}
-		var listHeader = [
+		{/*var listHeader = [
 			<Header />,
 			<Header />,
 			<Header />,
-		];
+		];*/}
 		const name = "will";
+		{/*Inject Prop into header*/}
+		const title = "Properties Title"; 
+	{/*Dom Element: <Header> is one dom element*/}
 		return(
 			<div>
-				<h1>It working123!</h1>
 				<h1>It working123!</h1>
 				<p> its {name} </p>
 				<p> its {1+2}</p>
 				<p> number from function: {this.getVale()} </p>
 				<p> double amount of 2: {this.getSecondVal(2)} </p>
 				<p> name from constructor: {this.name}</p>
-				<Header />
-				{listHeader}
 				<Footer />
+				<Header title = {"Constant Variable title"} />
+				<Header title = {this.state.title} />
+				<Header title={title} />
 				{this.state.name}
-				
-			</div>
-				
+			</div>	
 		);
 	}
 }
