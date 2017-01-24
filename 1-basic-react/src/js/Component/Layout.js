@@ -9,6 +9,11 @@ export default class Layout extends React.Component {
 	constructor(){
 		{/*Super() is need everytime for the first line inside constructor*/}
 		super();
+		{/* All the data for this app are only living here*/}
+		this.state = {
+			title: "Welcome",
+			name: "Name"
+		};
 		this.name = "Shan"
 		{/*this.state default is null
 			1. Always set State in the constructor()
@@ -30,10 +35,6 @@ export default class Layout extends React.Component {
 			5.1: To create a multiple & different version of same component.
 					By sending different properties to the same component.
 		*/}
-		this.state = {
-			name: "Will",
-			title: "State title"
-		};
 	}
 	getVale(){
 		return 9;
@@ -43,13 +44,18 @@ export default class Layout extends React.Component {
 		return val*val;
 	}
 
+	// Send&Receive data through event
+	changeTitle(title) {
+		this.setState({title});
+	}
+
 	render(){
 
 		{/*Change state after one second*/}
-		setTimeout(function() {
+{/*		setTimeout(function() {
 			this.setState({name: "Bob"})
 			this.setState({title: "Updated State title"})
-		}.bind(this), 3000);
+		}.bind(this), 3000);*/}
 
 		{/*Componet can add directly inside render, anywhere HTML is*/}
 		{/*var listHeader = [
@@ -60,6 +66,15 @@ export default class Layout extends React.Component {
 		const name = "will";
 		{/*Inject Prop into header*/}
 		const title = "Properties Title"; 
+
+	{/* Previous html for testing
+		<Header title = {"Constant Variable title"} />
+		<Header title = {this.state.title} />
+		<Header title={title} />
+		The line below testing render function
+		{this.state.name}
+	*/}
+
 	{/*Dom Element: <Header> is one dom element*/}
 		return(
 			<div>
@@ -70,10 +85,8 @@ export default class Layout extends React.Component {
 				<p> double amount of 2: {this.getSecondVal(2)} </p>
 				<p> name from constructor: {this.name}</p>
 				<Footer />
-				<Header title = {"Constant Variable title"} />
-				<Header title = {this.state.title} />
-				<Header title={title} />
-				{this.state.name}
+				<Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
+				
 			</div>	
 		);
 	}
