@@ -28,6 +28,9 @@ import {Link} from "react-router";
 		this.props.history.replaceState(null,"/");	
 		1. Replace current state to the parameter
 		2. Will not provide the "goes back button"
+
+		Check if the class is active or not:
+		console.log(history.isActive("archives"));
 	*/}
 
 export default class Layout extends React.Component {
@@ -35,11 +38,13 @@ export default class Layout extends React.Component {
 		this.props.history.replaceState(null,"/");	
 	}
   	render() {
+  		const{history} = this.props;
+  		console.log(history.isActive("archives"));
     	return (
     		<div>
     			<h1>KillerNews.net</h1>
     			{this.props.children}
-    			<Link to="archives" class="btn btn-danger">archives</Link>
+    			<Link to="archives" activeClassName="Test" class="btn btn-danger">archives</Link>
     			<Link to="settings"><button class="btn btn-success">settings</button></Link>
     			<button onClick={this.navigate.bind(this)}>featured</button>
     		</div>
